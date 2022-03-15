@@ -83,15 +83,19 @@ BLUE "Setting up Git Config"
 if !(git config user.name)
 then
     read -p "Insert Git username: " username
+sudo -i -u $SUDO_USER bash << EOF
     git config --global user.name $username
+EOF
 else
     GREEN "Username is already set"
 fi
 
 if !(git config user.email)
 then
-        read -p "Insert Git email: " email
-        git config --global user.email $email
+    read -p "Insert Git email: " email
+sudo -i -u $SUDO_USER bash << EOF
+    git config --global user.email $email
+EOF
 else
     GREEN "Email Username is already set"
 fi
@@ -159,7 +163,6 @@ fi
 BLUE "Creating SSH Key..."
 if !(test -f $HOME_PATH/.ssh/$SSHKEYNAME)
 then
-    echo "ssh key exists"
     read -p "Insert email for your ssh key: " sshemail
     ssh-keygen -f $HOME_PATH/.ssh/$SSHKEYNAME -t rsa -b 4096 -C $sshemail
 else
@@ -210,8 +213,10 @@ usermod -s /usr/bin/zsh $(whoami)
 
 #Install OhMyZsh
 BLUE "Installing OhMyZsh..."
+sudo -i -u $SUDO_USER bash << EOF
 export ZSH=$HOME_PATH/.oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+EOF
 
 #Installing Powerlevel10k
 BLUE "Installing PowerLevel10k"
