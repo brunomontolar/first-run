@@ -63,9 +63,6 @@ fi
 BLUE "Updating Packages..."
 sudo apt-get update 
 
-BLUE "Installing Python..."
-sudo apt install -y python
-
 BLUE "Installing Python3..."
 sudo apt install -y python3
 
@@ -111,7 +108,7 @@ fi
 
 #Docker
 BLUE "Installing Docker..."
-apt-get install \
+apt-get install -y \
     ca-certificates \
     curl \
     gnupg \

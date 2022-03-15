@@ -41,7 +41,6 @@ SSHKEYNAME=filename
 
 ## The script will install:
 ### Basic Installation:
-- Python 2
 - Python 3
 - Pip
 - Git
