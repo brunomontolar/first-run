@@ -80,7 +80,7 @@ sudo apt-get install -y curl
 
 #Git Configuration
 BLUE "Setting up Git Config"
-if !(git config user.name)
+if !(sudo -u $SUDO_USER git config user.name)
 then
     read -p "Insert Git username: " username
 sudo -i -u $SUDO_USER bash << EOF
@@ -90,7 +90,7 @@ else
     GREEN "Username is already set"
 fi
 
-if !(git config user.email)
+if !(sudo -u $SUDO_USER git config user.email)
 then
     read -p "Insert Git email: " email
 sudo -i -u $SUDO_USER bash << EOF
@@ -161,12 +161,13 @@ fi
 
 #Creating BMont SSH key
 BLUE "Creating SSH Key..."
-if !(test -f $HOME_PATH/.ssh/$SSHKEYNAME)
+FILE=$HOME_PATH/.ssh/$SSHKEYNAME
+if [ -f "$FILE" ]
 then
+    GREEN "SSH Key already exists"
+else
     read -p "Insert email for your ssh key: " sshemail
     ssh-keygen -f $HOME_PATH/.ssh/$SSHKEYNAME -t rsa -b 4096 -C $sshemail
-else
-    GREEN "SSH Key already exists"
 fi
 sudo chown -R $SUDO_USER: $HOME_PATH/.ssh/
 
