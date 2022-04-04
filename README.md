@@ -39,6 +39,26 @@ SSHKEYNAME=filename
 ```
 ---
 
+### Using Wireguard
+Add the wireguard configuration to file at:
+
+```
+/etc/wireguard/wg0.conf
+```
+
+Start Wireguard connection with the following command: 
+
+```
+sudo sudo wg-quick up wg0
+```
+
+Close connection with:
+
+```
+sudo wg-quick down wg0
+```
+
+---
 ## The script will install:
 ### Basic Installation:
 - Python 3

@@ -190,6 +190,18 @@ sudo apt-get install openvpn -y
 #Install Wireguard
 BLUE "Installing Wireguard..."
 sudo apt-get install wireguard -y
+sudo apt-get install openresolv -y
+sudo touch /etc/wireguard/wg0.conf
+echo "[Interface]
+Address = 
+PrivateKey = 
+ListenPort = 
+DNS = 
+
+[Peer]
+PublicKey =
+Endpoint = IP:PORT
+AllowedIPs = 0.0.0.0/0, ::/0" > /etc/wireguard/
 
 #Installing Fonts
 BLUE "Installing Fonts"
